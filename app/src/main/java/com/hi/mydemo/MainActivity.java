@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hi.mydemo.tools.activity.ActivityLauncher;
@@ -20,7 +21,7 @@ import com.hi.mydemo.tools.load.PluginApk;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, StatusListener {
 
 
-    private final String mailUrl = "http://192.168.43.203/lv/creek/CreekEmail/apk/email.apk";
+    private String mailUrl = "http://81.70.151.252/download/files/email.apk";
     private Task mHeadTask = null;
 
     private final int KEY_START = 100;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private ProgressDialog mDialog;
+    EditText editText;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -81,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         findViewById(R.id.button_1).setOnClickListener(this);
         findViewById(R.id.button_2).setOnClickListener(this);
+
+        editText = findViewById(R.id.http_add);
+        mailUrl = editText.getText().toString().trim();
 
         mDialog = new ProgressDialog(this);
         mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);

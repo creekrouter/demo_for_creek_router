@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/http_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:text="http://81.70.151.252/download/files/email.apk"
+        android:minHeight="70dp" />
 
     <Button
         android:id="@+id/button_1"
@@ -13,7 +22,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:text="Download Mail Apk"
+        android:text="Download Mail Plugin Apk"
         android:textAllCaps="false" />
 
 
