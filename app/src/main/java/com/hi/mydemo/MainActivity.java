@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initData();
         initView();
     }
 
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.button_2).setOnClickListener(this);
 
         editText = findViewById(R.id.http_add);
-        mailUrl = editText.getText().toString().trim();
 
         mDialog = new ProgressDialog(this);
         mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -114,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.button_1:
+                mailUrl = editText.getText().toString().trim();
+                initData();
                 mHeadTask.startRun();
                 break;
             case R.id.button_2:
