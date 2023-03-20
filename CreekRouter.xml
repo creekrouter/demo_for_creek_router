@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--    根节点至少包含一个AppModule属性,属性值为项目的ApplicationModule名称-->
+<Router AppModule="app" group="host">
+    <Log dir="./app/build" />
+    <Module name="app" aliasName="plugin_helper"/>
+</Router>
