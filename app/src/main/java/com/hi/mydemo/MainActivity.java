@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initData() {
+        mailUrl = editText.getText().toString().trim();
         PluginApk.init(this);
         PluginApk mailApk = new PluginApk("mail.apk", "mail", mailUrl, "com.creek.router.init.Plugin_Initializer_MailCore");
         ActivityLauncher.allPlugins.put(mailApk.group(), mailApk);
@@ -112,11 +113,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.button_1:
-                mailUrl = editText.getText().toString().trim();
                 initData();
                 mHeadTask.startRun();
                 break;
             case R.id.button_2:
+                if (mHeadTask == null) {
+                    initData();
+                }
                 PluginApk loginApk = ActivityLauncher.allPlugins.get("mail");
                 if (loginApk != null && loginApk.loadPlugin(this)) {
                     loginApk.launchHomePage(this);
