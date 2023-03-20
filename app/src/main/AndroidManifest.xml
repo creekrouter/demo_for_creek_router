@@ -78,7 +78,7 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="MyDemo"
+        android:label="demo"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
