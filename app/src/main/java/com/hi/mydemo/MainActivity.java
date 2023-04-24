@@ -179,7 +179,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String os_cpuabi = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("getprop ro.product.cpu.abi").getInputStream())).readLine();
                 if (os_cpuabi.contains("x86")) {
                     CPU_ABI = "x86";
-                } else if (os_cpuabi.contains("armeabi-v7a") || os_cpuabi.contains("arm64-v8a")) {
+                } else if (os_cpuabi.contains("arm64-v8a")) {
+                    CPU_ABI = "arm64-v8a";
+                } else if (os_cpuabi.contains("armeabi-v7a")) {
                     CPU_ABI = "armeabi-v7a";
                 } else {
                     CPU_ABI = "armeabi";
