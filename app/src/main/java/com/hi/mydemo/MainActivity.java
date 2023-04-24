@@ -18,6 +18,9 @@ import com.hi.mydemo.tools.download.StatusListener;
 import com.hi.mydemo.tools.download.Task;
 import com.hi.mydemo.tools.load.PluginApk;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, StatusListener {
 
 
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ProgressDialog mDialog;
     EditText editText;
+
+    public static String CPU_ABI = null;
+
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init_CPU_ABI();
         initView();
     }
 
@@ -163,5 +170,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             msg.obj = "解压错误：" + errorInfo;
         }
         handler.sendMessage(msg);
+    }
+
+
+    private static void init_CPU_ABI() {
+        if (CPU_ABI == null) {
+            try {
+                String os_cpuabi = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("getprop ro.product.cpu.abi").getInputStream())).readLine();
+                if (os_cpuabi.contains("x86")) {
+                    CPU_ABI = "x86";
+                } else if (os_cpuabi.contains("armeabi-v7a") || os_cpuabi.contains("arm64-v8a")) {
+                    CPU_ABI = "armeabi-v7a";
+                } else {
+                    CPU_ABI = "armeabi";
+                }
+            } catch (Exception e) {
+                CPU_ABI = "armeabi";
+            }
+        }
     }
 }

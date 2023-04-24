@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
+import com.hi.mydemo.MainActivity;
+
 import java.io.File;
 import java.lang.reflect.Method;
 
@@ -57,7 +59,7 @@ public abstract class PluginInfo {
     }
 
     public final String libSoPath() {
-        return unArchiverPath() + "/lib/arm64-v8a";
+        return unArchiverPath() + "/lib/"+ MainActivity.CPU_ABI;
     }
 
     protected final ClassLoader getClassLoader() {
