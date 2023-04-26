@@ -11,7 +11,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:text="http://81.70.151.252/download/files/email.apk"
+        android:text="http://81.70.151.252/download/files/mail.apk"
         android:minHeight="70dp" />
 
     <Button
