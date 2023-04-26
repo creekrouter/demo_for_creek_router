@@ -33,18 +33,16 @@ public class PluginActivity extends FragmentActivity {
     private boolean mInit = false;
     private PluginApk apk;
     private Object realInstance;
-    private String class_annotate, groupTo;
+    private String class_annotate, groupTo, groupFrom;
 
     protected boolean beforeOnCreate(Intent intent) {
         if (intent == null) {
             return false;
         }
-//        class_annotate = intent.getStringExtra(KEY_ACTIVITY_ANNOTATION);
         if (class_annotate == null || class_annotate.length() == 0) {
             return false;
         }
 
-        String groupFrom = intent.getStringExtra(KEY_PLUGIN_GROUP_FROM);
         if (groupFrom == null || groupFrom.length() == 0) {
             return false;
         }
@@ -73,8 +71,12 @@ public class PluginActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         if (getIntent() != null) {
-            class_annotate = getIntent().getStringExtra(KEY_ACTIVITY_ANNOTATION);
-            groupTo = getIntent().getStringExtra(KEY_PLUGIN_GROUP_TO);
+            Bundle bundle = getIntent().getBundleExtra("CreekRouter");
+            if (bundle != null) {
+                class_annotate = bundle.getString(KEY_ACTIVITY_ANNOTATION);
+                groupFrom = bundle.getString(KEY_PLUGIN_GROUP_FROM);
+                groupTo = bundle.getString(KEY_PLUGIN_GROUP_TO);
+            }
             Map<Filters, String> filterMapTo = new HashMap<>();
             filterMapTo.put(Filters.Group, groupTo);
             realInstance = CreekRouter.getBean(class_annotate, filterMapTo);

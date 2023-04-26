@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
@@ -34,11 +35,14 @@ public class ActivityLauncher {
         if (intent == null) {
             intent = new Intent();
         }
+        Bundle b =new Bundle();
+        b.putString(KEY_ACTIVITY_ANNOTATION, activityPath);
+        b.putString(KEY_PLUGIN_GROUP_FROM, hostGroup);
+        b.putString(KEY_PLUGIN_GROUP_TO, toGroup);
         ComponentName newComponent = new ComponentName(context, PluginActivity.class);
         intent.setComponent(newComponent);
-        intent.putExtra(KEY_ACTIVITY_ANNOTATION, activityPath);
-        intent.putExtra(KEY_PLUGIN_GROUP_FROM, hostGroup);
-        intent.putExtra(KEY_PLUGIN_GROUP_TO, toGroup);
+        intent.putExtra("CreekRouter",b);
+
         ((Activity) context).startActivityForResult(intent, requestCode);
     }
 
