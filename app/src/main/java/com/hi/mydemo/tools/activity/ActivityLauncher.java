@@ -49,9 +49,11 @@ public class ActivityLauncher {
     @CreekMethod(path = "host_tools_launchActivity2")
     public static void startActivityForResult(Fragment fragment, String activityPath, String toGroup, int requestCode) {
         Intent intent = new Intent(fragment.getContext(), PluginActivity.class);
-        intent.putExtra(KEY_ACTIVITY_ANNOTATION, activityPath);
-        intent.putExtra(KEY_PLUGIN_GROUP_FROM, hostGroup);
-        intent.putExtra(KEY_PLUGIN_GROUP_TO, toGroup);
+        Bundle b =new Bundle();
+        b.putString(KEY_ACTIVITY_ANNOTATION, activityPath);
+        b.putString(KEY_PLUGIN_GROUP_FROM, hostGroup);
+        b.putString(KEY_PLUGIN_GROUP_TO, toGroup);
+        intent.putExtra("CreekRouter",b);
         fragment.startActivityForResult(intent, requestCode);
 
     }
